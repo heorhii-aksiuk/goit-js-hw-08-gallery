@@ -44,7 +44,7 @@ function openModal() {
 }
 
 function createFullImage(event) {
-  return (modalImageEl.src = event.target.dataset.source);
+  modalImageEl.src = event.target.dataset.source;
 }
 
 closeModalBtn.addEventListener('click', closeModal);
