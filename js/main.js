@@ -2,9 +2,10 @@ import galleryItems from './app.js';
 
 const refs = {
   galleryListEl: document.querySelector('.js-gallery'),
+  modalEl: document.querySelector('.lightbox'),
 };
 
-const { galleryListEl } = refs;
+const { galleryListEl, modalEl } = refs;
 
 /* Создание и рендер разметки по массиву данных galleryItems из app.js и предоставленному шаблону.*/
 
@@ -35,6 +36,13 @@ function eventCallback(event) {
   if (event.target.nodeName !== 'IMG') {
     return;
   } else {
+    openModal();
     return console.dir(event.target.dataset.source);
   }
+}
+
+/* Открытие модального окна по клику на элементе галереи. */
+
+function openModal() {
+  modalEl.classList.add('is-open');
 }
