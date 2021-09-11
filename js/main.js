@@ -6,6 +6,8 @@ const refs = {
 
 const { galleryListEl } = refs;
 
+/* Создание и рендер разметки по массиву данных galleryItems из app.js и предоставленному шаблону.*/
+
 galleryListEl.insertAdjacentHTML('afterbegin', createMarkup(galleryItems));
 
 function createMarkup(data) {
@@ -22,4 +24,17 @@ function createMarkup(data) {
       </li>`;
     })
     .join('');
+}
+
+/* Реализация делегирования на галерее ul.js-gallery и получение url большого изображения. */
+
+galleryListEl.addEventListener('click', eventCallback); // изменить имя коллбека
+
+function eventCallback(event) {
+  event.preventDefault();
+  if (event.target.nodeName !== 'IMG') {
+    return;
+  } else {
+    return console.dir(event.target.dataset.source);
+  }
 }
