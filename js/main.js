@@ -2,10 +2,12 @@ import galleryItems from './app.js';
 
 const refs = {
   galleryListEl: document.querySelector('.js-gallery'),
-  modalEl: document.querySelector('.lightbox'),
+  modalEl: document.querySelector('.js-lightbox'),
+  modalImageEl: document.querySelector('.lightbox__image'),
+  closeModalBtn: document.querySelector('[data-action="close-lightbox"]'),
 };
 
-const { galleryListEl, modalEl } = refs;
+const { galleryListEl, modalEl, modalImageEl, closeModalBtn } = refs;
 
 /* Создание и рендер разметки по массиву данных galleryItems из app.js и предоставленному шаблону.*/
 
@@ -29,15 +31,15 @@ function createMarkup(data) {
 
 /* Реализация делегирования на галерее ul.js-gallery и получение url большого изображения. */
 
-galleryListEl.addEventListener('click', eventCallback); // изменить имя коллбека
+galleryListEl.addEventListener('click', openFullImage);
 
-function eventCallback(event) {
+function openFullImage(event) {
   event.preventDefault();
   if (event.target.nodeName !== 'IMG') {
     return;
   } else {
     openModal();
-    return console.dir(event.target.dataset.source);
+    createFullImage(event);
   }
 }
 
@@ -45,4 +47,18 @@ function eventCallback(event) {
 
 function openModal() {
   modalEl.classList.add('is-open');
+}
+
+/* Подмена значения атрибута src элемента img.lightbox__image. */
+
+function createFullImage(event) {
+  return (modalImageEl.src = event.target.dataset.source);
+}
+
+/* Закрытие модального окна по клику на кнопку button[data-action="close-lightbox"] */
+
+closeModalBtn.addEventListener('click', closeModal);
+
+function closeModal() {
+  modalEl.classList.remove('is-open');
 }
