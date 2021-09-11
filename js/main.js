@@ -61,12 +61,3 @@ function closeModal() {
   modalEl.classList.remove('is-open');
   modalImageEl.src = '';
 }
-
-// if (modalEl.classList.contains('is-open')) {
-//   galleryListEl.removeEventListener('click', openFullImage);
-// }
-// } else {
-//   closeModalBtn.removeEventListener('click', closeModal);
-//   backdropEl.removeEventListener('click', closeModal);
-//   window.removeEventListener('keydown', closeModalwithEsc);
-// }
