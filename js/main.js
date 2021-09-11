@@ -51,9 +51,9 @@ function createFullImage(event) {
 
 closeModalBtn.addEventListener('click', closeModal);
 backdropEl.addEventListener('click', closeModal);
-window.addEventListener('keydown', closeModalwithEsc);
+window.addEventListener('keydown', closeModalWithEsc);
 
-function closeModalwithEsc(event) {
+function closeModalWithEsc(event) {
   if (event.code === 'Escape') closeModal();
 }
 
