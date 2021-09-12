@@ -75,9 +75,9 @@ function nextImage(data) {
 
   if (currentImageIndex === imageArray.length - 1) return;
 
-  let nextImageUrl = currentImageIndex + 1;
-  modalImageEl.src = imageArray[nextImageUrl];
-  openImage = imageArray[nextImageUrl];
+  let nextImageIndex = currentImageIndex + 1;
+  modalImageEl.src = imageArray[nextImageIndex];
+  openImage = imageArray[nextImageIndex];
 }
 
 function previousImage(data) {
@@ -86,7 +86,7 @@ function previousImage(data) {
 
   if (currentImageIndex === 0) return;
 
-  let previousImageUrl = currentImageIndex - 1;
-  modalImageEl.src = imageArray[previousImageUrl];
-  openImage = imageArray[previousImageUrl];
+  let previousImageIndex = currentImageIndex - 1;
+  modalImageEl.src = imageArray[previousImageIndex];
+  openImage = imageArray[previousImageIndex];
 }
