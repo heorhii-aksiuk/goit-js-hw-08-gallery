@@ -35,12 +35,9 @@ galleryListEl.addEventListener('click', openFullImage);
 
 function openFullImage(event) {
   event.preventDefault();
-  if (event.target.nodeName !== 'IMG') {
-    return;
-  } else {
-    openModal();
-    createFullImage(event);
-  }
+  if (event.target.nodeName !== 'IMG') return;
+  openModal();
+  createFullImage(event);
 }
 
 function openModal() {
@@ -58,7 +55,6 @@ window.addEventListener('keydown', closeModalWithEsc);
 
 function closeModalWithEsc(event) {
   if (event.code === 'Escape') closeModal();
-  // console.log(event.code); так можно проверять зачистилось ли событие
 }
 
 function closeModal() {
@@ -76,7 +72,9 @@ function leafingThrough(event) {
 function nextImage(data) {
   let imageArray = data.map(item => item.original);
   let currentImageIndex = imageArray.indexOf(openImage);
+
   if (imageArray.length === currentImageIndex + 1) return;
+
   let nextImageUrl = currentImageIndex + 1;
   modalImageEl.src = imageArray[nextImageUrl];
   openImage = imageArray[nextImageUrl];
@@ -85,7 +83,9 @@ function nextImage(data) {
 function previousImage(data) {
   let imageArray = data.map(item => item.original);
   let currentImageIndex = imageArray.indexOf(openImage);
+
   if (currentImageIndex === 0) return;
+
   let previousImageUrl = currentImageIndex - 1;
   modalImageEl.src = imageArray[previousImageUrl];
   openImage = imageArray[previousImageUrl];
