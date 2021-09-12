@@ -73,7 +73,7 @@ function nextImage(data) {
   let imageArray = data.map(item => item.original);
   let currentImageIndex = imageArray.indexOf(openImage);
 
-  if (imageArray.length === currentImageIndex + 1) return;
+  if (currentImageIndex === imageArray.length - 1) return;
 
   let nextImageUrl = currentImageIndex + 1;
   modalImageEl.src = imageArray[nextImageUrl];
