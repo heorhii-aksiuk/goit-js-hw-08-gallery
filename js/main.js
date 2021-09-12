@@ -53,13 +53,13 @@ closeModalBtn.addEventListener('click', closeModal);
 backdropEl.addEventListener('click', closeModal);
 window.addEventListener('keydown', closeModalWithEsc);
 
-function closeModalWithEsc(event) {
-  if (event.code === 'Escape') closeModal();
-}
-
 function closeModal() {
   modalEl.classList.remove('is-open');
   modalImageEl.src = '';
+}
+
+function closeModalWithEsc(event) {
+  if (event.code === 'Escape') closeModal();
 }
 
 window.addEventListener('keydown', leafingThrough);
