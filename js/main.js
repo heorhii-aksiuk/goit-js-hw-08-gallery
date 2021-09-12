@@ -11,6 +11,8 @@ const refs = {
 const { galleryListEl, modalEl, modalImageEl, closeModalBtn, backdropEl } =
   refs;
 
+let openImage;
+
 galleryListEl.insertAdjacentHTML('afterbegin', createMarkup(galleryItems));
 
 function createMarkup(data) {
@@ -47,6 +49,7 @@ function openModal() {
 
 function createFullImage(event) {
   modalImageEl.src = event.target.dataset.source;
+  openImage = event.target.dataset.source;
 }
 
 closeModalBtn.addEventListener('click', closeModal);
@@ -55,9 +58,35 @@ window.addEventListener('keydown', closeModalWithEsc);
 
 function closeModalWithEsc(event) {
   if (event.code === 'Escape') closeModal();
+  // console.log(event.code); так можно проверять зачистилось ли событие
 }
 
 function closeModal() {
   modalEl.classList.remove('is-open');
   modalImageEl.src = '';
+}
+
+window.addEventListener('keydown', leafingThrough);
+
+function leafingThrough(event) {
+  if (event.code === 'ArrowRight') nextImage(galleryItems);
+  if (event.code === 'ArrowLeft') previousImage(galleryItems);
+}
+
+function nextImage(data) {
+  let imageArray = data.map(item => item.original);
+  let currentImageIndex = imageArray.indexOf(openImage);
+  if (imageArray.length === currentImageIndex + 1) return;
+  let nextImageUrl = currentImageIndex + 1;
+  modalImageEl.src = imageArray[nextImageUrl];
+  openImage = imageArray[nextImageUrl];
+}
+
+function previousImage(data) {
+  let imageArray = data.map(item => item.original);
+  let currentImageIndex = imageArray.indexOf(openImage);
+  if (currentImageIndex === 0) return;
+  let previousImageUrl = currentImageIndex - 1;
+  modalImageEl.src = imageArray[previousImageUrl];
+  openImage = imageArray[previousImageUrl];
 }
