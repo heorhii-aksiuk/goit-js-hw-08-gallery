@@ -41,6 +41,8 @@ function openFullImage(event) {
 }
 
 function openModal() {
+  window.addEventListener('keydown', closeModalWithEsc);
+  window.addEventListener('keydown', leafingThrough);
   modalEl.classList.add('is-open');
 }
 
@@ -51,9 +53,10 @@ function createFullImage(event) {
 
 closeModalBtn.addEventListener('click', closeModal);
 backdropEl.addEventListener('click', closeModal);
-window.addEventListener('keydown', closeModalWithEsc);
 
 function closeModal() {
+  window.removeEventListener('keydown', closeModalWithEsc);
+  window.removeEventListener('keydown', leafingThrough);
   modalEl.classList.remove('is-open');
   modalImageEl.src = '';
 }
@@ -61,8 +64,6 @@ function closeModal() {
 function closeModalWithEsc(event) {
   if (event.code === 'Escape') closeModal();
 }
-
-window.addEventListener('keydown', leafingThrough);
 
 function leafingThrough(event) {
   if (event.code === 'ArrowRight') nextImage(galleryItems);
